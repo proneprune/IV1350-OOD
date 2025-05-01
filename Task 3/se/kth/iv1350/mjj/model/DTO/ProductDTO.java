@@ -6,21 +6,53 @@ public class ProductDTO {
     private double price;
     private double taxRate;
 
-    ProductDTO(int productID, String productDesc, double price, int taxRate) {
+    /**
+     * Creates a ProductDTO from the supplied ID, description, price, and tax rate.
+     * 
+     * @param productID
+     * @param productDesc
+     * @param price
+     * @param taxRate
+     */
+    public ProductDTO(int productID, String productDesc, double price, int taxRate) {
         this.productID = productID;
         this.productDesc = productDesc;
         this.price = price;
         this.taxRate = taxRate;
     }
-    public double getPrice() {
-        return price;
+
+    /**
+     * Getter for the product ID.
+     * 
+     * @return The ID of the product.
+     */
+    public int getProductID() {
+        return productID;
     }
+
+    /**
+     * Getter for the product description.
+     * 
+     * @return The product description.
+     */
     public String getProductDesc() {
         return productDesc;
     }
-    public int getProductID() {
-    return productID;
+
+    /**
+     * Getter for the price of the product.
+     * 
+     * @return The product price.
+     */
+    public double getPrice() {
+        return price;
     }
+
+    /**
+     * Getter for the tax rate of the product.
+     * 
+     * @return The tax rate of the product.
+     */
     public double getTaxRate() {
         return taxRate;
     }
