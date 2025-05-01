@@ -13,7 +13,7 @@ public class Receipt {
     }
 
     private void setDateTime() {
-        this.date = LocalDateTime.now()
+        this.date = LocalDateTime.now();
         this.hour = date.getHour();
         this.minute = date.getMinute();
     }
