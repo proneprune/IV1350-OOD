@@ -21,7 +21,7 @@ public class CashRegister {
      * @return The calculated change to give back.
      */
     public double calculateChange(double paymentAmount, SaleDTO finalSale) {
-        double totalCost = finalSale.getRunningTotal() + finalSale.getTotalTax();
+        double totalCost = finalSale.getRunningTotal();
         double changeToGiveBack = paymentAmount - totalCost;
         updateCashInRegister(totalCost);
         return changeToGiveBack;

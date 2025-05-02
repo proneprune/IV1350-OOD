@@ -27,7 +27,7 @@ public class Cost {
     public void addCost(double Cost, double taxRate, int quantity) {
         for (int i = 0; i < quantity; i++) {
             this.totalCost += Cost;
-            this.totalTaxCost += Cost - (Cost / ((taxRate / 100.0) + 1));
+            this.totalTaxCost += Cost - (Cost / (taxRate + 1));
         }
     }
 
