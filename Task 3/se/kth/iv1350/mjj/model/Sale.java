@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map.Entry;
 
+import se.kth.iv1350.mjj.integration.ReceiptPrinter;
 import se.kth.iv1350.mjj.model.DTO.ProductDTO;
 import se.kth.iv1350.mjj.model.DTO.SaleDTO;
 import se.kth.iv1350.mjj.util.Cost;
@@ -76,6 +77,19 @@ public class Sale {
      */
     public void updateDiscount(double discount) {
         //this discount method is not implemented in sem3
+    }
+
+    /**
+     * Prints the receipt for the sale using the provided ReceiptPrinter.
+     * It takes in amount paid and change as well as the final saleDTO
+     * @param receiptPrinter The receipt printer to be used for printing the receipt.
+     * @param paymentAmount The amount paid by the customer.
+     * @param change The change to be given back to the customer.
+     * @param saleDTO The final saleDTO object containing the details of the sale.
+     */
+    public void printReceipt(ReceiptPrinter receiptPrinter, double paymentAmount, double change, SaleDTO saleDTO) {
+        Receipt receipt = new Receipt(saleDTO, paymentAmount, change);
+        receiptPrinter.printReceipt(receipt);
     }
 
 }
