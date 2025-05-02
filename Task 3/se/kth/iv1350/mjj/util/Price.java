@@ -20,10 +20,13 @@ public class Price {
      * 
      * @param price The price of the product to be added.
      * @param taxRate the tax rate of the product to be added.
+     * @param quantity The quantity of the product to be added.
      */
-    public void addPrice(double price, int taxRate) {
-        this.totalPrice += price;
-        this.totalTaxPrice += price - (price / ((taxRate / 100.0) + 1));
+    public void addPrice(double price, double taxRate, int quantity) {
+        for (int i = 0; i < quantity; i++) {
+            this.totalPrice += price;
+            this.totalTaxPrice += price - (price / ((taxRate / 100.0) + 1));
+        }
     }
 
     /**

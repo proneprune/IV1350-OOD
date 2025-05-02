@@ -7,16 +7,16 @@ import java.util.Map.Entry;
 
 import se.kth.iv1350.mjj.model.DTO.ProductDTO;
 import se.kth.iv1350.mjj.model.DTO.SaleDTO;
+import se.kth.iv1350.mjj.util.Price;
 
 
 public class Sale {
-    private double runningTotal;
-    private double totalTax;
+
+    private Price price;
     private ArrayList<Entry<ProductDTO, Integer>> productList;
 
     public Sale() {
-        this.runningTotal = 0;
-        this.totalTax = 0;
+
         this.productList = new ArrayList<Entry<ProductDTO, Integer>>();
     }
 
@@ -33,9 +33,7 @@ public class Sale {
             Entry<ProductDTO, Integer> test = new SimpleEntry<>(product, quantity);
             this.productList.add(test);
         }   
-        this.runningTotal += product.getPrice() * quantity * (1 + product.getTaxRate());//kanske behöver /100 beroende på tax ser ut
-        this.totalTax += product.getPrice() * quantity * product.getTaxRate();//kanske behöver /100 beroende på tax ser ut 
-       
+        this.price.addPrice(product.getPrice(), product.getTaxRate(), quantity);
     }
 
     public double getRunningTotalPlusVat() {
@@ -43,7 +41,7 @@ public class Sale {
     }
 
     public SaleDTO getSaleDTO() {
-        return new SaleDTO(this.runningTotal, this.totalTax, this.productList);
+        return new SaleDTO(price.getTotalPrice(), price.getTotalTaxPrice(), this.productList);
         //return this.productList;
     }
 
