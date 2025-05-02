@@ -63,7 +63,7 @@ public class SaleController {
     }
 
     private ProductDTO getProduct(int productID){
-        return inventorySystem.getProduct(productID);
+        return inventorySystem.getProductInfo(productID);
     }
 
     /**
