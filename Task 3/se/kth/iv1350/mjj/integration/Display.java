@@ -1,9 +1,6 @@
 package se.kth.iv1350.mjj.integration;
 
-import java.util.ArrayList;
-
 import se.kth.iv1350.mjj.model.DTO.ProductDTO;
-import se.kth.iv1350.mjj.model.DTO.SaleDTO;
 
 public class Display {
 
