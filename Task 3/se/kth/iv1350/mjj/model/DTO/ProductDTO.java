@@ -2,9 +2,11 @@ package se.kth.iv1350.mjj.model.DTO;
 
 public class ProductDTO {
     private int productID;
+    private String productName;
     private String productDesc;
     private double price;
     private double taxRate;
+
 
     /**
      * Creates a ProductDTO from the supplied ID, description, price, and tax rate.
@@ -14,8 +16,9 @@ public class ProductDTO {
      * @param price
      * @param taxRate
      */
-    public ProductDTO(int productID, String productDesc, double price, int taxRate) {
+    public ProductDTO(int productID, String productName, String productDesc, double price, int taxRate) {
         this.productID = productID;
+        this.productName = productName;
         this.productDesc = productDesc;
         this.price = price;
         this.taxRate = taxRate;
@@ -28,6 +31,16 @@ public class ProductDTO {
      */
     public int getProductID() {
         return productID;
+    }
+
+    /**
+     * Getter for the product name.
+     * 
+     * @return The name of the product.
+     */
+
+    public String getProductName() {
+        return productName;
     }
 
     /**
