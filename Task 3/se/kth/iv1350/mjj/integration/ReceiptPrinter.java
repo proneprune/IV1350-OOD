@@ -23,18 +23,18 @@ public class ReceiptPrinter {
         for(Entry<ProductDTO, Integer> currentProductEntry : productsInSale) {
             ProductDTO currentProduct = currentProductEntry.getKey();
             int currentProductAmount = currentProductEntry.getValue();
-            System.out.printf("%s\t%d x %.2f%n\t%.2f%n",currentProduct.getProductName(),
+            System.out.printf("%-23s\t%d x %.2f\t%.2f%n",currentProduct.getProductName(),
                                                             currentProductAmount, 
                                                             currentProduct.getPrice(),
                                                             currentProductAmount * currentProduct.getPrice()
                                                             );
         }
 
-        System.out.printf("%nTotal price:\t%f%n", finalSale.getRunningTotal());
-        System.out.printf("Total tax:\t%f%n%n", finalSale.getTotalTax());
-        System.out.printf("Paid amount:\t%.2f%n", saleReceipt.getAmountPaid());
-        System.out.printf("Change:\t%.2f%n", saleReceipt.getChange());
+        System.out.printf("%nTotal price:\t%.2f kr%n", finalSale.getRunningTotal());
+        System.out.printf("Total tax:\t%.2f%n%n", finalSale.getTotalTax());
+        System.out.printf("Paid amount:\t%.2f kr%n", saleReceipt.getAmountPaid());
+        System.out.printf("Change:\t%.2f kr%n", saleReceipt.getChange());
         System.out.println("------------------ End receipt ---------------------");
     }
-    
+
 }

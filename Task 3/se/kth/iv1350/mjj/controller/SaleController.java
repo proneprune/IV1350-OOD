@@ -5,7 +5,6 @@ import se.kth.iv1350.mjj.integration.ExternalAccountingSystem;
 import se.kth.iv1350.mjj.integration.ExternalInventorySystem;
 import se.kth.iv1350.mjj.integration.ReceiptPrinter;
 import se.kth.iv1350.mjj.model.CashRegister;
-import se.kth.iv1350.mjj.model.Receipt;
 import se.kth.iv1350.mjj.model.Sale;
 import se.kth.iv1350.mjj.model.DTO.ProductDTO;
 import se.kth.iv1350.mjj.model.DTO.SaleDTO;
@@ -107,18 +106,5 @@ public class SaleController {
 
         return change;
     }
-
-    // /**
-    //  * Prints the receipt for the sale.
-    //  * It creates a Receipt object with the final saleDTO and sends it to the receipt printer.
-    //  * 
-    //  * @param amountPaid The amount paid by the customer.
-    //  * @param change The change to be given back to the customer.
-    //  */
-
-    // public void printReceipt(double amountPaid, double change) {
-    //     Receipt receipt = new Receipt(sale.getSaleDTO(), amountPaid, change);
-    //     receiptPrinter.printReceipt(receipt);
-    // }
 
 }

@@ -22,5 +22,6 @@ public class Main {
         ExternalInventorySystem externalInventorySystem = new ExternalInventorySystem();
         SaleController saleController = new SaleController(externalAccountingSystem, externalInventorySystem, receiptPrinter, display);
         View view = new View(saleController);
+        view.start();
     }
 }
