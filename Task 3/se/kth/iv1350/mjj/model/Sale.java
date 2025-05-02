@@ -56,7 +56,16 @@ public class Sale {
      * @return The total cost of the sale including VAT.
      */
     public double getRunningTotalPlusVat() {
-        return this.cost.getTotalCost();
+        return cost.getTotalCost();
+    }
+
+    /**
+     * Get the total VAT cost of the sale.
+     * 
+     * @return The total VAT cost of the sale.
+     */
+    public double getTotalTax() {
+        return cost.getTotalTaxCost();
     }
 
     /**
