@@ -61,6 +61,7 @@ public class SaleController {
      */
     public void scanProduct(int productID, int quantity){
         ProductDTO product = getProduct(productID);
+        display.updateDisplay(product, quantity);
         sale.addProduct(product, quantity);
     }
 
