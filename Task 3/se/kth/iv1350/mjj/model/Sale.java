@@ -43,6 +43,7 @@ public class Sale {
     }
 
     public SaleDTO getSaleDTO() {
+        return new SaleDTO(this.runningTotal, this.totalTax, this.productList);
         //return this.productList;
     }
 
@@ -50,8 +51,9 @@ public class Sale {
         //this discount method is not implemented in sem3
     }
 
-    public void printReceipt(double amountPaid, double change) {
-        Receipt receipt = new Receipt(this.getSaleDTO(), amountPaid, change);
-        
-    }
+    //This method should be in the controller, not in the model.
+    // public void printReceipt(double amountPaid, double change) {
+    //     Receipt receipt = new Receipt(this.getSaleDTO(), amountPaid, change);
+
+    // }
 }
