@@ -8,6 +8,7 @@ import se.kth.iv1350.mjj.model.CashRegister;
 import se.kth.iv1350.mjj.model.Receipt;
 import se.kth.iv1350.mjj.model.Sale;
 import se.kth.iv1350.mjj.model.DTO.ProductDTO;
+import se.kth.iv1350.mjj.model.DTO.SaleDTO;
 
 
 public class SaleController {
@@ -18,6 +19,7 @@ public class SaleController {
     private ReceiptPrinter receiptPrinter;
     private Display display;
     private CashRegister cashRegister;
+    private SaleDTO finalSaleDTO;
 
     /**
      * Creates a sale controller initiated with with all the external systems.
@@ -63,16 +65,18 @@ public class SaleController {
     }
 
     private ProductDTO getProduct(int productID){
-        return inventorySystem.getProduct(productID);
+        return inventorySystem.getProductInfo(productID);
     }
 
     /**
      * Ends the sale and returns the total amount to be paid.
+     * Creates a finalized SaleDTO object with the current sale information.
      * 
      * @return The total amount to be paid for the sale.
      */
 
     public double endSale(){
+        finalSaleDTO = sale.getSaleDTO();
 
         return sale.getRunningTotalPlusVat();
     }
@@ -89,25 +93,31 @@ public class SaleController {
 
     /**
      * This method is used to call the cash register to calculate the change to be given back to the customer.
+     * It also updates inventory and accounting systems, and prints the receipt.
      * 
      * @param paymentAmount The amount paid by the customer.
      * @return The change to be given back to the customer.
      */
     public double enterAmount(double paymentAmount){
-        return cashRegister.calculateChange(paymentAmount, sale.getSaleDTO());
+        double change = cashRegister.calculateChange(paymentAmount, finalSaleDTO);
+        //update inventory
+        //update accounting system
+        sale.printReceipt(receiptPrinter, paymentAmount, change, finalSaleDTO);
+
+        return change;
     }
 
-    /**
-     * Prints the receipt for the sale.
-     * It creates a Receipt object with the final saleDTO and sends it to the receipt printer.
-     * 
-     * @param amountPaid The amount paid by the customer.
-     * @param change The change to be given back to the customer.
-     */
+    // /**
+    //  * Prints the receipt for the sale.
+    //  * It creates a Receipt object with the final saleDTO and sends it to the receipt printer.
+    //  * 
+    //  * @param amountPaid The amount paid by the customer.
+    //  * @param change The change to be given back to the customer.
+    //  */
 
-    public void printReceipt(double amountPaid, double change) {
-        Receipt receipt = new Receipt(sale.getSaleDTO(), amountPaid, change);
-        receiptPrinter.printReceipt(receipt);
-    }
+    // public void printReceipt(double amountPaid, double change) {
+    //     Receipt receipt = new Receipt(sale.getSaleDTO(), amountPaid, change);
+    //     receiptPrinter.printReceipt(receipt);
+    // }
 
 }

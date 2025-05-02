@@ -5,14 +5,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map.Entry;
 
+import se.kth.iv1350.mjj.integration.ReceiptPrinter;
 import se.kth.iv1350.mjj.model.DTO.ProductDTO;
 import se.kth.iv1350.mjj.model.DTO.SaleDTO;
-import se.kth.iv1350.mjj.util.Price;
+import se.kth.iv1350.mjj.util.Cost;
 
 
 public class Sale {
 
-    private Price price;
+    private Cost cost;
     private ArrayList<Entry<ProductDTO, Integer>> productList;
 
 
@@ -20,7 +21,7 @@ public class Sale {
      *  Creates a Sale object with an empty list of products and a price object.
      */ 
     public Sale() {
-        this.price = new Price();
+        this.cost = new Cost();
         this.productList = new ArrayList<Entry<ProductDTO, Integer>>();
     }
 
@@ -43,28 +44,28 @@ public class Sale {
             Entry<ProductDTO, Integer> test = new SimpleEntry<>(product, quantity);
             this.productList.add(test);
         }   
-        this.price.addPrice(product.getPrice(), product.getTaxRate(), quantity);
+        this.cost.addCost(product.getPrice(), product.getTaxRate(), quantity);
     }
 
 
     /**
-     * Gets the total price of the Sale.
-     * Since VAT is included in the price in the inventory, get total price 
-     * is the total price including VAT.
+     * Gets the total cost of the Sale.
+     * Since VAT is included in the cost in the inventory, get total cost 
+     * is the total cost including VAT.
      * 
-     * @return The total price of the sale including VAT.
+     * @return The total cost of the sale including VAT.
      */
     public double getRunningTotalPlusVat() {
-        return this.price.getTotalPrice();
+        return this.cost.getTotalCost();
     }
 
     /**
      * Creates a SaleDTO object from the current sale.
      * 
-     * @return A SaleDTO object containing the total price, total tax price, and list of products in the sale.
+     * @return A SaleDTO object containing the total cost, total tax cost, and list of products in the sale.
      */
     public SaleDTO getSaleDTO() {
-        return new SaleDTO(this.price.getTotalPrice(), this.price.getTotalTaxPrice(), this.productList);
+        return new SaleDTO(this.cost.getTotalCost(), this.cost.getTotalTaxCost(), this.productList);
         //return this.productList;
     }
 
@@ -76,6 +77,19 @@ public class Sale {
      */
     public void updateDiscount(double discount) {
         //this discount method is not implemented in sem3
+    }
+
+    /**
+     * Prints the receipt for the sale using the provided ReceiptPrinter.
+     * It takes in amount paid and change as well as the final saleDTO
+     * @param receiptPrinter The receipt printer to be used for printing the receipt.
+     * @param paymentAmount The amount paid by the customer.
+     * @param change The change to be given back to the customer.
+     * @param saleDTO The final saleDTO object containing the details of the sale.
+     */
+    public void printReceipt(ReceiptPrinter receiptPrinter, double paymentAmount, double change, SaleDTO saleDTO) {
+        Receipt receipt = new Receipt(saleDTO, paymentAmount, change);
+        receiptPrinter.printReceipt(receipt);
     }
 
 }
