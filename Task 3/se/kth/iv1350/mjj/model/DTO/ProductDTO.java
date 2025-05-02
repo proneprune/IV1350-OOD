@@ -1,11 +1,12 @@
 package se.kth.iv1350.mjj.model.DTO;
 
+import se.kth.iv1350.mjj.util.Price;
+
 public class ProductDTO {
     private int productID;
     private String productName;
     private String productDesc;
-    private double price;
-    private double taxRate;
+    private Price price;
 
 
     /**
@@ -20,8 +21,7 @@ public class ProductDTO {
         this.productID = productID;
         this.productName = productName;
         this.productDesc = productDesc;
-        this.price = price;
-        this.taxRate = taxRate;
+        this.price = new Price(price, taxRate);
     }
 
     /**
@@ -58,7 +58,7 @@ public class ProductDTO {
      * @return The product price.
      */
     public double getPrice() {
-        return price;
+        return price.getPrice();
     }
 
     /**
@@ -67,6 +67,6 @@ public class ProductDTO {
      * @return The tax rate of the product.
      */
     public double getTaxRate() {
-        return taxRate;
+        return price.getTaxRate();
     }
 }
