@@ -1,10 +1,11 @@
 package se.kth.iv1350.mjj.model.DTO;
 import java.util.ArrayList;
+import java.util.Map.Entry;
 
 public class SaleDTO {
     private double runningTotal;
     private double totalTax;
-    private ArrayList<ProductDTO> productsInSale;
+    private ArrayList<Entry<ProductDTO, Integer>> productsInSale;
 
     /**
      * Creates a SaleDTO from the supplied running total, total tax, and list of products
@@ -13,7 +14,7 @@ public class SaleDTO {
      * @param totalTax          The total amount of tax in the sale
      * @param productsInSale    An ArrayList of products in the sale.
      */
-    public SaleDTO(double runningTotal, double totalTax, ArrayList<ProductDTO> productsInSale) {
+    public SaleDTO(double runningTotal, double totalTax, ArrayList<Entry<ProductDTO, Integer>> productsInSale) {
         this.runningTotal = runningTotal;
         this.totalTax = totalTax;
         this.productsInSale = productsInSale;
@@ -42,7 +43,7 @@ public class SaleDTO {
      * 
      * @return An arraylist of products featured in the sale.
      */
-    public ArrayList<ProductDTO> getProductsInSale() {
+    public ArrayList<Entry<ProductDTO, Integer>> getProductsInSale() {
         return productsInSale;
     }
 }
