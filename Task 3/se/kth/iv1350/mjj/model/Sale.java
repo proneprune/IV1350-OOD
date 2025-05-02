@@ -15,8 +15,10 @@ public class Sale {
     private Price price;
     private ArrayList<Entry<ProductDTO, Integer>> productList;
 
-    public Sale() {
 
+
+    public Sale() {
+        this.price = new Price();
         this.productList = new ArrayList<Entry<ProductDTO, Integer>>();
     }
 
@@ -36,12 +38,13 @@ public class Sale {
         this.price.addPrice(product.getPrice(), product.getTaxRate(), quantity);
     }
 
+
     public double getRunningTotalPlusVat() {
-        return 0;
+        return this.price.getTotalPrice();
     }
 
     public SaleDTO getSaleDTO() {
-        return new SaleDTO(price.getTotalPrice(), price.getTotalTaxPrice(), this.productList);
+        return new SaleDTO(this.price.getTotalPrice(), this.price.getTotalTaxPrice(), this.productList);
         //return this.productList;
     }
 
@@ -49,9 +52,4 @@ public class Sale {
         //this discount method is not implemented in sem3
     }
 
-    //This method should be in the controller, not in the model.
-    // public void printReceipt(double amountPaid, double change) {
-    //     Receipt receipt = new Receipt(this.getSaleDTO(), amountPaid, change);
-
-    // }
 }
