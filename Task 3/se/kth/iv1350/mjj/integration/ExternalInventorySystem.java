@@ -22,9 +22,9 @@ public class ExternalInventorySystem {
             case 2:
                 return item2;
             case 3:
-                return item1;
+                return item3;
             case 4:
-                return item2;
+                return item4;
             default:
                 return null;
         }
