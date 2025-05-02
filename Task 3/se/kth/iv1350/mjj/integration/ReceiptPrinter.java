@@ -2,28 +2,32 @@ package se.kth.iv1350.mjj.integration;
 
 import se.kth.iv1350.mjj.model.Receipt;
 import se.kth.iv1350.mjj.model.DTO.ProductDTO;
-import java.util.ArrayList;
+import se.kth.iv1350.mjj.model.DTO.SaleDTO;
 
+import java.util.ArrayList;
+import java.util.Map.Entry;
 
 public class ReceiptPrinter {
-
-    public ReceiptPrinter() {
-
-    }
-
     public void printReceipt(Receipt saleReceipt){
-        System.out.println("Receipt");
-        System.out.printf("Date time: %s%n", saleReceipt.getDate());
+        SaleDTO finalSale = saleReceipt.getFinalSale();
+        System.out.println("------------------ Begin receipt -------------------");
+        System.out.printf("Time of Sale: %s%n", saleReceipt.getTimeOfSale());
 
-        ArrayList <ProductDTO> productsInSale = saleReceipt.getFinalSale().getProductsInSale();
+        ArrayList<Entry<ProductDTO, Integer>> productsInSale = finalSale.getProductsInSale();
 
-        while(productsInSale.size() > 0) {
-            ProductDTO currentProduct = productsInSale.remove(0);
-            System.out.printf("%s: %f Tax %d%n", currentProduct.getProductDesc(), currentProduct.getPrice(), currentProduct.getTaxRate());
+        for(Entry<ProductDTO, Integer> currentProductEntry : productsInSale) {
+            ProductDTO currentProduct = currentProductEntry.getKey();
+            int currentProductAmount = currentProductEntry.getValue();
+            System.out.printf("%s\t%d x %.2f%n\t%.2f",currentProduct.getProductName(),
+                                                            currentProductAmount, 
+                                                            currentProduct.getPrice(),
+                                                            currentProductAmount * currentProduct.getPrice()
+                                                            );
         }
 
-        System.out.printf("Total price: %f%n", saleReceipt.getFinalSale().getRunningTotal());
-        System.out.printf("Total Tax: %f%n", saleReceipt.getFinalSale().getTotalTax());
+        System.out.printf("Total price: %f%n", finalSale.getRunningTotal());
+        System.out.printf("Total tax: %f%n", finalSale.getTotalTax());
+        System.out.println("------------------ End receipt ---------------------");
     }
     
 }
