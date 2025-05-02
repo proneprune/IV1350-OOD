@@ -11,7 +11,7 @@ public class Receipt {
     private double amountPaid;
     private double change;
 
-    public Receipt(SaleDTO finalSale, double amountPaid, double change) {
+    Receipt(SaleDTO finalSale, double amountPaid, double change) {
         this.dateAndTime = LocalDateTime.now();
         this.finalSale = finalSale;
         this.amountPaid = amountPaid;
