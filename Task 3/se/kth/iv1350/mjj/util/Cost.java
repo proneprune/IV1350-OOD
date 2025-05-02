@@ -1,50 +1,52 @@
 package se.kth.iv1350.mjj.util;
 
-public class Price {
+public class Cost {
 
-    private double totalPrice;
-    private double totalTaxPrice;
+    private double totalCost;
+    private double totalTaxCost;
+
+    
 
     
     /**
-     * Creates a Price object with initial values of 0 for total price and total tax price.
+     * Creates a Cost object with initial values of 0 for total Cost and total tax Cost.
      */
-    public Price() {
-        this.totalPrice = 0;
-        this.totalTaxPrice = 0;
+    public Cost() {
+        this.totalCost = 0;
+        this.totalTaxCost = 0;
     }
 
     /**
-     * Adds the price to the total price and calculates the tax price based on the given tax rate and 
-     * adds that to the total tax price.
+     * Adds the Cost to the total Cost and calculates the tax Cost based on the given tax rate and 
+     * adds that to the total tax Cost.
      * 
-     * @param price The price of the product to be added.
+     * @param Cost The Cost of the product to be added.
      * @param taxRate the tax rate of the product to be added.
      * @param quantity The quantity of the product to be added.
      */
-    public void addPrice(double price, double taxRate, int quantity) {
+    public void addCost(double Cost, double taxRate, int quantity) {
         for (int i = 0; i < quantity; i++) {
-            this.totalPrice += price;
-            this.totalTaxPrice += price - (price / ((taxRate / 100.0) + 1));
+            this.totalCost += Cost;
+            this.totalTaxCost += Cost - (Cost / ((taxRate / 100.0) + 1));
         }
     }
 
     /**
-     * Returns the total price of the products added so far.
+     * Returns the total Cost of the products added so far.
      * 
-     * @return The total price of the products added so far.
+     * @return The total Cost of the products added so far.
      */
-    public double getTotalPrice() {
-        return totalPrice;
+    public double getTotalCost() {
+        return totalCost;
     }
 
     /**
-     * Returns the total tax price of the products added so far.
+     * Returns the total tax Cost of the products added so far.
      * 
-     * @return The total tax price of the products added so far.
+     * @return The total tax Cost of the products added so far.
      */
-    public double getTotalTaxPrice() {
-        return totalTaxPrice;
+    public double getTotalTaxCost() {
+        return totalTaxCost;
     }
     
 }
