@@ -2,7 +2,6 @@ package se.kth.iv1350.mjj.model;
 
 import java.util.AbstractMap.SimpleEntry;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Map.Entry;
 
 import se.kth.iv1350.mjj.integration.ReceiptPrinter;
