@@ -26,7 +26,7 @@ public class Display {
      */
     public void updateDisplay(ProductDTO currentProduct, int quantity, double runningTotal, double totalTax) {
 
-        System.out.printf("Added %d Item with ID: %d%n", quantity, currentProduct.getProductID());
+        System.out.printf("Added %d item%s with ID: %d%n", quantity, ((quantity > 1) ? "s" : ""), currentProduct.getProductID());
         System.out.printf("Item ID: %d%n", currentProduct.getProductID());
         System.out.printf("Item name: %s%n", currentProduct.getProductName());
         System.out.printf("Item cost: %f%n", currentProduct.getPrice());
