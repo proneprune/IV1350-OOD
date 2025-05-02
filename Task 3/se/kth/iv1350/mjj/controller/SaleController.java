@@ -60,11 +60,16 @@ public class SaleController {
      */
     public void scanProduct(int productID, int quantity){
         ProductDTO product = getProduct(productID);
-        sale.addProduct(product, quantity);
-        display.updateDisplay(product, quantity, sale.getRunningTotalPlusVat(), sale.getTotalTax());
+        if(product != null) {
+            sale.addProduct(product, quantity);
+            display.updateDisplay(product, quantity, sale.getRunningTotalPlusVat(), sale.getTotalTax());
+        } else {
+            System.out.printf("Product with id: %d does not exist in inventorysystem", productID);
+        }
     }
 
     private ProductDTO getProduct(int productID){
+        
         return inventorySystem.getProductInfo(productID);
     }
 
