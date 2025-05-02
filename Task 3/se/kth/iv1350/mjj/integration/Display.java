@@ -24,13 +24,11 @@ public class Display {
      * @param currentProduct The current product to be displayed.
      * @param quantity       The quantity of the current product.
      */
-    public void updateDisplay(ProductDTO currentProduct, int quantity) {
-        runningTotal += currentProduct.getPrice() * quantity;
-        getTaxRate(currentProduct, quantity);
+    public void updateDisplay(ProductDTO currentProduct, int quantity, double runningTotal, double totalTax) {
 
         System.out.printf("Added %d Item with ID: %d%n", quantity, currentProduct.getProductID());
         System.out.printf("Item ID: %d%n", currentProduct.getProductID());
-        System.out.printf("Product name: %s%n", currentProduct.getProductName());
+        System.out.printf("Item name: %s%n", currentProduct.getProductName());
         System.out.printf("Item cost: %f%n", currentProduct.getPrice());
         System.out.printf("Item VAT: %f%n", currentProduct.getTaxRate());
         System.out.printf("Item description: %s%n", currentProduct.getProductDesc());
@@ -39,8 +37,6 @@ public class Display {
         System.out.printf("Total VAT: %f%n", totalTax);
     }
 
-    private void getTaxRate(ProductDTO currentProduct, int quantity) {
-        totalTax += (currentProduct.getPrice() - (currentProduct.getPrice()/(currentProduct.getTaxRate()+1))) * quantity;
-    }
+
     
 }
