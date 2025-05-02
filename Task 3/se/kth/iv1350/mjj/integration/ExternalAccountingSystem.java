@@ -7,7 +7,7 @@ public class ExternalAccountingSystem {
         
     }
 
-    public void updateAccountigSystem(SaleDTO finalSale) {
+    public void updateAccountingSystem(SaleDTO finalSale) {
         
     }
 }
