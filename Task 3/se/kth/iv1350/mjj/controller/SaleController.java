@@ -5,8 +5,10 @@ import se.kth.iv1350.mjj.integration.ExternalAccountingSystem;
 import se.kth.iv1350.mjj.integration.ExternalInventorySystem;
 import se.kth.iv1350.mjj.integration.ReceiptPrinter;
 import se.kth.iv1350.mjj.model.CashRegister;
+import se.kth.iv1350.mjj.model.Receipt;
 import se.kth.iv1350.mjj.model.Sale;
 import se.kth.iv1350.mjj.model.DTO.ProductDTO;
+
 
 public class SaleController {
     private Sale sale;
@@ -17,7 +19,15 @@ public class SaleController {
     private Display display;
     private CashRegister cashRegister;
 
-
+    /**
+     * Creates a sale controller initiated with with all the external systems.
+     * 
+     * @param accountingSystem The external accounting system to be used.
+     * @param inventorySystem The external inventory system to be used.
+     * @param receiptPrinter The receipt printer connected to this sale
+     * @param display   The display connected to this sale
+     * @param cashRegister The cash register connected to this sale
+     */
     public SaleController(ExternalAccountingSystem accountingSystem, ExternalInventorySystem inventorySystem, 
                                     ReceiptPrinter receiptPrinter, Display display, CashRegister cashRegister) {
         this.accountingSystem = accountingSystem;
@@ -26,7 +36,10 @@ public class SaleController {
         this.display = display;
         this.cashRegister = cashRegister;
     }
-
+    
+    /**
+     * Starts a new sale by creating a sale object.
+     */
     public void startSale(){
         this.sale = new Sale();
     }
@@ -36,6 +49,14 @@ public class SaleController {
     //with that id aldready exists in the sale.
     //Can be changed to check if the product exists in the sale and then just
     //update the quantity instead of retrieving it again. TBC
+
+    /**
+     * Scans a product with a given product ID and quantity
+     * Uses the private method getProduct to retrieve the product from the inventory system.
+     *  
+     * @param productID the ID of the product that is scanned
+     * @param quantity the amount of the product that is scanned
+     */
     public void scanProduct(int productID, int quantity){
         ProductDTO product = getProduct(productID);
         sale.addProduct(product, quantity);
@@ -45,17 +66,48 @@ public class SaleController {
         return inventorySystem.getProduct(productID);
     }
 
+    /**
+     * Ends the sale and returns the total amount to be paid.
+     * 
+     * @return The total amount to be paid for the sale.
+     */
+
     public double endSale(){
 
-        return 0;
+        return sale.getRunningTotalPlusVat();
     }
 
+    /**
+     *  A method to get a discount for a customer.
+     *  This method is not implemented in sem3
+     * 
+     * @param customerID The ID of the customer to get a discount for.
+     */
     public void getDiscount(int customerID){
-
+        //will apply discount eventually
     }
 
+    /**
+     * This method is used to call the cash register to calculate the change to be given back to the customer.
+     * 
+     * @param paymentAmount The amount paid by the customer.
+     * @return The change to be given back to the customer.
+     */
     public double enterAmount(double paymentAmount){
-        return 0;
+        return cashRegister.calculateChange(paymentAmount, sale.getSaleDTO());
+    }
+
+    /**
+     * Prints the receipt for the sale.
+     * It creates a Receipt object with the final saleDTO and sends it to the receipt printer.
+     * 
+     * @param amountPaid The amount paid by the customer.
+     * @param change The change to be given back to the customer.
+     */
+
+    public void printReceipt(double amountPaid, double change) {
+        Receipt receipt = new Receipt(sale.getSaleDTO(), amountPaid, change);
+        receiptPrinter.printReceipt(receipt);
     }
 
 }
