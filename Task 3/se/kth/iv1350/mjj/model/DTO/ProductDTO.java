@@ -17,7 +17,7 @@ public class ProductDTO {
      * @param price
      * @param taxRate
      */
-    public ProductDTO(int productID, String productName, String productDesc, double price, int taxRate) {
+    public ProductDTO(int productID, String productName, String productDesc, double price, double taxRate) {
         this.productID = productID;
         this.productName = productName;
         this.productDesc = productDesc;
