@@ -31,12 +31,12 @@ public class SaleController {
      * @param cashRegister The cash register connected to this sale
      */
     public SaleController(ExternalAccountingSystem accountingSystem, ExternalInventorySystem inventorySystem, 
-                                    ReceiptPrinter receiptPrinter, Display display, CashRegister cashRegister) {
+                                    ReceiptPrinter receiptPrinter, Display display) {
         this.accountingSystem = accountingSystem;
         this.inventorySystem = inventorySystem;
         this.receiptPrinter = receiptPrinter;
         this.display = display;
-        this.cashRegister = cashRegister;
+        this.cashRegister = new CashRegister();
     }
     
     /**
