@@ -10,10 +10,10 @@ import java.util.Map.Entry;
 public class ReceiptPrinter {
     public void printReceipt(Receipt saleReceipt){
         SaleDTO finalSale = saleReceipt.getFinalSale();
-        System.out.println("------------------ Begin receipt -------------------");
-        System.out.printf("Time of Sale: %s%n", saleReceipt.getTimeOfSale());
-
         ArrayList<Entry<ProductDTO, Integer>> productsInSale = finalSale.getProductsInSale();
+        
+        System.out.println("------------------ Begin receipt -------------------");
+        System.out.printf("Time of Sale: %s%n%n", saleReceipt.getTimeOfSale());
 
         for(Entry<ProductDTO, Integer> currentProductEntry : productsInSale) {
             ProductDTO currentProduct = currentProductEntry.getKey();
@@ -25,8 +25,10 @@ public class ReceiptPrinter {
                                                             );
         }
 
-        System.out.printf("Total price: %f%n", finalSale.getRunningTotal());
-        System.out.printf("Total tax: %f%n", finalSale.getTotalTax());
+        System.out.printf("%nTotal price:\t%f%n", finalSale.getRunningTotal());
+        System.out.printf("Total tax:\t%f%n%n", finalSale.getTotalTax());
+        System.out.printf("Paid amount:\t%.2f%n", saleReceipt.getAmountPaid());
+        System.out.printf("Change:\t%.2f%n", saleReceipt.getChange());
         System.out.println("------------------ End receipt ---------------------");
     }
     
