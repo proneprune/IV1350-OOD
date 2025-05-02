@@ -18,7 +18,7 @@ public class ReceiptPrinter {
         for(Entry<ProductDTO, Integer> currentProductEntry : productsInSale) {
             ProductDTO currentProduct = currentProductEntry.getKey();
             int currentProductAmount = currentProductEntry.getValue();
-            System.out.printf("%s\t%d x %.2f%n\t%.2f",currentProduct.getProductName(),
+            System.out.printf("%s\t%d x %.2f%n\t%.2f%n",currentProduct.getProductName(),
                                                             currentProductAmount, 
                                                             currentProduct.getPrice(),
                                                             currentProductAmount * currentProduct.getPrice()
