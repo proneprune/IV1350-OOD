@@ -8,6 +8,11 @@ import java.util.ArrayList;
 import java.util.Map.Entry;
 
 public class ReceiptPrinter {
+
+    public ReceiptPrinter() {
+
+    }
+
     public void printReceipt(Receipt saleReceipt){
         SaleDTO finalSale = saleReceipt.getFinalSale();
         ArrayList<Entry<ProductDTO, Integer>> productsInSale = finalSale.getProductsInSale();
