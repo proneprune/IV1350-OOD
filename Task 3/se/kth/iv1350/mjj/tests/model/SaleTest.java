@@ -47,16 +47,16 @@ public class SaleTest {
 
 
 
-        assertEquals(expectedTotal, sale.getRunningTotalPlusVat(), 0, "Total cost with VAT is correct");
-        assertEquals(expectedTax, sale.getTotalTax(), 0, "Tax cost is correct");
+        assertEquals(expectedTotal, sale.getRunningTotalPlusVat(), 0, "Total cost with VAT is not correct");
+        assertEquals(expectedTax, sale.getTotalTax(), 0, "Tax cost is not correct");
     }
 
     @Test
     public void testAddProduct() {
         sale.addProduct(product, 2);
         saleDTO = sale.getSaleDTO();
-        assertEquals(product, saleDTO.getProductsInSale().get(0).getKey(), "Product is correct");
-        assertEquals(2, saleDTO.getProductsInSale().get(0).getValue(), "Product quantity is correct");
+        assertEquals(product, saleDTO.getProductsInSale().get(0).getKey(), "Product is not correct");
+        assertEquals(2, saleDTO.getProductsInSale().get(0).getValue(), "Product quantity is not correct");
     }
 
     @Test
@@ -64,8 +64,8 @@ public class SaleTest {
         sale.addProduct(product, 1);
         sale.addProduct(product, 1);
         saleDTO = sale.getSaleDTO();
-        assertEquals(product, saleDTO.getProductsInSale().get(0).getKey(), "Product is correct");
-        assertEquals(2, saleDTO.getProductsInSale().get(0).getValue(), "Product quantity is correct");
+        assertEquals(product, saleDTO.getProductsInSale().get(0).getKey(), "Product is not correct");
+        assertEquals(2, saleDTO.getProductsInSale().get(0).getValue(), "Product quantity is not correct");
     }
 
 
