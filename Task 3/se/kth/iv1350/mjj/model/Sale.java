@@ -31,19 +31,23 @@ public class Sale {
      * @param quantity The amount of the product to be added.
      */
     public void addProduct(ProductDTO product, int quantity) {
-        boolean productExists = false;
-        for (Entry<ProductDTO, Integer> entry : this.productList) {
-            if (entry.getKey().getProductID() == product.getProductID()) {
-                productExists = true;
-                entry.setValue(entry.getValue() + quantity);
-                break;
-            }
-        }
-        if (!productExists){
-            Entry<ProductDTO, Integer> test = new SimpleEntry<>(product, quantity);
-            this.productList.add(test);
+        Entry<ProductDTO, Integer> exisitingProductEntry = getExisitingProductEntry(product);
+        if (exisitingProductEntry != null) {
+            exisitingProductEntry.setValue(exisitingProductEntry.getValue() + quantity);
+        } else {
+            Entry<ProductDTO, Integer> newProductEntry = new SimpleEntry<>(product, quantity);
+            this.productList.add(newProductEntry);
         }   
         this.cost.addCost(product.getPrice(), product.getTaxRate(), quantity);
+    }
+
+    private Entry<ProductDTO, Integer> getExisitingProductEntry(ProductDTO productToCheck) {
+        for (Entry<ProductDTO, Integer> entry : this.productList) {
+            if (entry.getKey().getProductID() == productToCheck.getProductID()) {
+                return entry;
+            }
+        }
+        return null;
     }
 
 
