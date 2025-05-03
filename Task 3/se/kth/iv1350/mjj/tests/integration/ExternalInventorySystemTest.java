@@ -14,22 +14,32 @@ import se.kth.iv1350.mjj.model.DTO.ProductDTO;
 
 public class ExternalInventorySystemTest {
 
-    private SaleController saleController;
+    private ExternalInventorySystem externalInventorySystem;
     
     @BeforeEach
     public void setUp() {
-        
+        externalInventorySystem = new ExternalInventorySystem();
     }
 
     @AfterEach
     public void tearDown() {
-        
-        
+        externalInventorySystem = null;
     }
 
     @Test
-    public void testScanProductCorrectID() {
+    public void testGetProductInfoValidID() {
+        ProductDTO expected = new ProductDTO(2, "Mjölk 1L", "Arla mellan mjölk 1L, 1.5% fett", 14.95, 0.12);
+        ProductDTO tested = externalInventorySystem.getProductInfo(2);
+        assertEquals(expected.getProductID(), tested.getProductID());
+        assertEquals(expected.getProductName(), tested.getProductName());
+        assertEquals(expected.getProductDesc(), tested.getProductDesc());
+        assertEquals(expected.getPrice(), tested.getPrice());
+        assertEquals(expected.getTaxRate(), tested.getTaxRate());
+    }
 
-
+    @Test
+    public void testGetProductInfoInvalidID() {
+        ProductDTO tested = externalInventorySystem.getProductInfo(5);
+        assertNull(tested, "ProductDTO with invalid ID is not null.");
     }
 }
