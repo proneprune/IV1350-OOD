@@ -31,4 +31,16 @@ public class SaleControllerTest {
     public void testScanProductCorrectID() {
         saleController.scanProduct(1, 1);
     }
+    @Test
+    public void testDoAPurchase() {
+        saleController.scanProduct(1, 1);
+        double amountToPay = saleController.endSale();
+        double change = saleController.enterAmount(amountToPay);
+    }
+    @Test
+    public void testPayingWithNegativMoney() {
+        saleController.scanProduct(1, 1);
+        double amountToPay = saleController.endSale();
+        double change = saleController.enterAmount(-amountToPay);
+    }
 }
