@@ -111,7 +111,7 @@ public class SaleController {
                 //update accounting system
                 sale.printReceipt(receiptPrinter, paymentAmount, change, finalSaleDTO);
             } else {
-                System.out.printf("payment have to be posetiv %d kr is invalid", paymentAmount);
+                System.out.printf("payment have to be positive %d kr is invalid", paymentAmount);
             }
 
         return change;
