@@ -10,7 +10,7 @@ public class ProductDTO {
 
 
     /**
-     * Creates a ProductDTO from the supplied ID, description, price, and tax rate.
+     * Creates a ProductDTO from the supplied ID, name, description, price, and tax rate.
      * 
      * @param productID The ID of the product.
      * @param productName The name of the product.
