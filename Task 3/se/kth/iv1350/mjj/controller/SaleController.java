@@ -62,7 +62,7 @@ public class SaleController {
         ProductDTO product = getProduct(productID);
         if(product != null) {
             sale.addProduct(product, quantity);
-            display.updateDisplay(product, quantity, sale.getRunningTotalPlusVat(), sale.getTotalTax());
+            display.updateDisplay(product, quantity, sale.getCost());
         } else {
             System.out.printf("Product with id: %d does not exist in inventorysystem", productID);
         }
