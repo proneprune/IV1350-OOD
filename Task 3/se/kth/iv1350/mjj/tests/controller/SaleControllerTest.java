@@ -5,6 +5,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
+
 import se.kth.iv1350.mjj.controller.SaleController;
 import se.kth.iv1350.mjj.integration.Display;
 import se.kth.iv1350.mjj.integration.ExternalAccountingSystem;
@@ -29,5 +30,17 @@ public class SaleControllerTest {
     @Test
     public void testScanProductCorrectID() {
         saleController.scanProduct(1, 1);
+    }
+    @Test
+    public void testDoAPurchase() {
+        saleController.scanProduct(1, 1);
+        double amountToPay = saleController.endSale();
+        double change = saleController.enterAmount(amountToPay);
+    }
+    @Test
+    public void testPayingWithNegativMoney() {
+        saleController.scanProduct(1, 1);
+        double amountToPay = saleController.endSale();
+        double change = saleController.enterAmount(-amountToPay);
     }
 }

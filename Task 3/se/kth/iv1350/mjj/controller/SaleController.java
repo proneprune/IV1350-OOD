@@ -104,12 +104,18 @@ public class SaleController {
      * @return The change to be given back to the customer.
      */
     public double enterAmount(double paymentAmount){
-        double change = cashRegister.calculateChange(paymentAmount, finalSaleDTO);
-        //update inventory
-        //update accounting system
-        sale.printReceipt(receiptPrinter, paymentAmount, change, finalSaleDTO);
+            double change = 0;
+            if( paymentAmount > 0) {
+                change = cashRegister.calculateChange(paymentAmount, finalSaleDTO);
+                //update inventory
+                //update accounting system
+                sale.printReceipt(receiptPrinter, paymentAmount, change, finalSaleDTO);
+            } else {
+                System.out.printf("payment have to be positive %d kr is invalid", paymentAmount);
+            }
 
         return change;
+        
     }
 
 }
