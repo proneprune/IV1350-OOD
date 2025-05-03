@@ -72,8 +72,8 @@ public class Sale {
      * 
      * @return Cost witch contains the total tax cost and total cost the pruducts added so far.
      */
-    public double getCost() {
-        return cost.getCost();
+    public Cost getCost() {
+        return cost;
     }
 
     /**
