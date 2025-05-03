@@ -68,6 +68,15 @@ public class Sale {
     }
 
     /**
+     * Returns the total theCost object.
+     * 
+     * @return Cost witch contains the total tax cost and total cost the pruducts added so far.
+     */
+    public double getCost() {
+        return cost.getCost();
+    }
+
+    /**
      * Creates a SaleDTO object from the current sale.
      * 
      * @return A SaleDTO object containing the total cost, total tax cost, and list of products in the sale.

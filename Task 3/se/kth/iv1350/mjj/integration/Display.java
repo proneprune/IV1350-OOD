@@ -1,6 +1,7 @@
 package se.kth.iv1350.mjj.integration;
 
 import se.kth.iv1350.mjj.model.DTO.ProductDTO;
+import se.kth.iv1350.mjj.util.Cost;
 
 public class Display {
 
@@ -19,7 +20,7 @@ public class Display {
      * @param currentProduct The current product to be displayed.
      * @param quantity       The quantity of the current product.
      */
-    public void updateDisplay(ProductDTO currentProduct, int quantity, double runningTotal, double totalTax) {
+    public void updateDisplay(ProductDTO currentProduct, int quantity, Cost cost) {
 
         System.out.printf("Added %d item%s with ID: %d%n", quantity, ((quantity > 1) ? "s" : ""), currentProduct.getProductID());
         System.out.printf("Item ID: %d%n", currentProduct.getProductID());
@@ -28,8 +29,8 @@ public class Display {
         System.out.printf("Item VAT: %.0f%%%n", currentProduct.getTaxRate()*100);
         System.out.printf("Item description: %s%n%n", currentProduct.getProductDesc());
 
-        System.out.printf("Total cost (incl VAT): %.2f kr%n", runningTotal);
-        System.out.printf("Total VAT: %.2f%n%n", totalTax);
+        System.out.printf("Total cost (incl VAT): %.2f kr%n", cost.getTotalCost());
+        System.out.printf("Total VAT: %.2f%n%n", cost.getTotalTaxCost());
     }
 
 
