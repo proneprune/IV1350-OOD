@@ -12,7 +12,7 @@ public class SaleDTO {
      * 
      * @param runningTotal      The running total of the sale
      * @param totalTax          The total amount of tax in the sale
-     * @param productsInSale    An ArrayList of products in the sale.
+     * @param productsInSale    The list of products in the sale, represented as a list of entries
      */
     public SaleDTO(double runningTotal, double totalTax, ArrayList<Entry<ProductDTO, Integer>> productsInSale) {
         this.runningTotal = runningTotal;

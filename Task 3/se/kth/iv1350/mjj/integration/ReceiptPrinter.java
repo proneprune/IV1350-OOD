@@ -9,9 +9,20 @@ import java.util.Map.Entry;
 
 public class ReceiptPrinter {
 
+    /**
+     * Creates a new instance of ReceiptPrinter.
+     * This class is responsible for printing the receipt to the console.
+     */
+
     public ReceiptPrinter() {
 
     }
+
+    /**
+     * Prints the receipt to the console.
+     * 
+     * @param saleReceipt The receipt to be printed.
+     */
 
     public void printReceipt(Receipt saleReceipt){
         SaleDTO finalSale = saleReceipt.getFinalSale();

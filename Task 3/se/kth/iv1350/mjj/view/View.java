@@ -5,11 +5,21 @@ import se.kth.iv1350.mjj.controller.SaleController;
 public class View {
     private SaleController saleController;
 
+    /**
+     * Creates a new instance of View.
+     * 
+     * @param saleController The controller that handles the sale process.
+     */
+
     public View(SaleController saleController) {
         this.saleController = saleController;
     }
 
     // TESTING
+    /**
+     * * This method simulates a sale process. It starts a new sale, scans products,
+     * enters the amount paid by the customer, and prints the change to be returned.
+     */
     public void start() {
         System.out.println("Welcome to the store!");
         
