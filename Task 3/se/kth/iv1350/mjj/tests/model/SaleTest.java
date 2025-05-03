@@ -32,8 +32,8 @@ public class SaleTest {
         double expectedTotal = 2 * 10.0;
         double expectedTax = 2 * (10 - (10.0 / 1.1)) ;
 
-        assertEquals(expectedTotal, sale.getRunningTotalPlusVat(), 0, "Total cost with VAT should be correct");
-        assertEquals(expectedTax, sale.getTotalTax(), 0, "Tax cost should be correct");
+        assertEquals(expectedTotal, sale.getRunningTotalPlusVat(), 0, "Total cost with VAT is correct");
+        assertEquals(expectedTax, sale.getTotalTax(), 0, "Tax cost is correct");
     }
 
 
