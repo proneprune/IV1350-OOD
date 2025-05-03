@@ -48,14 +48,4 @@ public class Cost {
     public double getTotalTaxCost() {
         return totalTaxCost;
     }
-
-    /**
-     * Returns the total theCost object.
-     * 
-     * @return Cost witch contains the total tax cost and total cost the pruducts added so far.
-     */
-    public Cost getCost() {
-        return this;
-    }
-    
 }
