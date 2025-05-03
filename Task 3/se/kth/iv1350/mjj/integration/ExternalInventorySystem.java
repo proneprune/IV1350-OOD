@@ -31,7 +31,9 @@ public class ExternalInventorySystem {
     }
 
     public void updateInventorySystem(SaleDTO finalSale) {
-
+        System.out.println("====================================");
+        System.out.println(" Inventory system recieved SaleDTO");
+        System.out.println("====================================");
     }
     
 }
