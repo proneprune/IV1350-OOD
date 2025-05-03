@@ -13,24 +13,35 @@ public class SaleTest {
 
     private Sale sale;
     private ProductDTO product;
+    private ProductDTO product2;
     
     @BeforeEach
     public void setUp() {
         sale = new Sale();
         product = new ProductDTO(0, "Milk", "Tasty milk", 10.0, 0.1);
+        product2 = new ProductDTO(1, "Bread", "Fresh bread", 20.0, 0.2);
     }
 
     @AfterEach
     public void tearDown() {
         sale = null;
         product = null;
+        product2 = null;
     }
 
     @Test
-    public void testAddNewProduct() {
+    public void testPriceOfSale() {
         sale.addProduct(product, 2);
+        //product1
         double expectedTotal = 2 * 10.0;
         double expectedTax = 2 * (10 - (10.0 / 1.1)) ;
+
+        sale.addProduct(product2, 1);
+        //product2
+        expectedTotal += 1 * 20.0;
+        expectedTax += 1 * (20 - (20.0 / 1.2)) ;
+
+
 
         assertEquals(expectedTotal, sale.getRunningTotalPlusVat(), 0, "Total cost with VAT is correct");
         assertEquals(expectedTax, sale.getTotalTax(), 0, "Tax cost is correct");
