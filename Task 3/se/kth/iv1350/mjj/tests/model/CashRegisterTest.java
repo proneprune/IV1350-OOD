@@ -4,8 +4,6 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import junit.framework.Assert;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 import se.kth.iv1350.mjj.model.CashRegister;
