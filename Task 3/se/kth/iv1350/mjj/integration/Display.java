@@ -19,6 +19,7 @@ public class Display {
      * 
      * @param currentProduct The current product to be displayed.
      * @param quantity       The quantity of the current product.
+     * @param cost           The object that contains total cost and total tax so far
      */
     public void updateDisplay(ProductDTO currentProduct, int quantity, Cost cost) {
 
