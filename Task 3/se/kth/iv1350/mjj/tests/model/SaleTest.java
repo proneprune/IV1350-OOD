@@ -51,8 +51,18 @@ public class SaleTest {
         assertEquals(expectedTax, sale.getTotalTax(), 0, "Tax cost is correct");
     }
 
-    @Test void testAddProduct() {
+    @Test
+    public void testAddProduct() {
         sale.addProduct(product, 2);
+        saleDTO = sale.getSaleDTO();
+        assertEquals(product, saleDTO.getProductsInSale().get(0).getKey(), "Product is correct");
+        assertEquals(2, saleDTO.getProductsInSale().get(0).getValue(), "Product quantity is correct");
+    }
+
+    @Test
+    public void testAddAlreadyExistingProduct(){
+        sale.addProduct(product, 1);
+        sale.addProduct(product, 1);
         saleDTO = sale.getSaleDTO();
         assertEquals(product, saleDTO.getProductsInSale().get(0).getKey(), "Product is correct");
         assertEquals(2, saleDTO.getProductsInSale().get(0).getValue(), "Product quantity is correct");
