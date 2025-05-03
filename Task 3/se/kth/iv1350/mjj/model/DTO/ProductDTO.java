@@ -12,10 +12,11 @@ public class ProductDTO {
     /**
      * Creates a ProductDTO from the supplied ID, description, price, and tax rate.
      * 
-     * @param productID
-     * @param productDesc
-     * @param price
-     * @param taxRate
+     * @param productID The ID of the product.
+     * @param productName The name of the product.
+     * @param productDesc The description of the product.
+     * @param price The price of the product including VAT.
+     * @param taxRate  The tax rate of the product.
      */
     public ProductDTO(int productID, String productName, String productDesc, double price, double taxRate) {
         this.productID = productID;
