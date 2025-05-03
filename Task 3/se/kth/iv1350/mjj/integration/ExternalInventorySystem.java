@@ -15,6 +15,12 @@ public class ExternalInventorySystem {
 
     }
 
+    /**
+     * A method for returning a product based on its ID.
+     * 
+     * @param id The product ID of the wanted product.
+     * @return A ProductDTO of the wanted product.
+     */
     public ProductDTO getProductInfo(int id) {
         switch (id) {
             case 1:
@@ -30,6 +36,12 @@ public class ExternalInventorySystem {
         }
     }
 
+    /**
+     * A method for updating the inventory system and stock.
+     * Not fully implemented as of seminar 3, only prints in terminal.
+     * 
+     * @param finalSale The final SaleDTO of the sale.
+     */
     public void updateInventorySystem(SaleDTO finalSale) {
         System.out.println("====================================");
         System.out.println(" Inventory system recieved SaleDTO");
