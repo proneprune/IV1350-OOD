@@ -1,4 +1,4 @@
-package se.kth.iv1350.mjj.tests.model;
+package se.kth.iv1350.mjj.model;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;

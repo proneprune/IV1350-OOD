@@ -1,4 +1,4 @@
-package se.kth.iv1350.mjj.tests.integration;
+package se.kth.iv1350.mjj.integration;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
