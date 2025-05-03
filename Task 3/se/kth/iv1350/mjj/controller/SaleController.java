@@ -100,22 +100,28 @@ public class SaleController {
      * This method is used to call the cash register to calculate the change to be given back to the customer.
      * It also updates inventory and accounting systems, and prints the receipt.
      * 
+     * In case of negative or insufficent payment, -1 and -2 is returned respectively. 
+     * This will be updated for sem 4 with exceptions.
+     * 
+     * The updating of the external systems is not implemented as of sem 3.
+     * 
      * @param paymentAmount The amount paid by the customer.
      * @return The change to be given back to the customer.
      */
     public double enterAmount(double paymentAmount){
-            double change = 0;
-            if( paymentAmount > 0) {
-                change = cashRegister.calculateChange(paymentAmount, finalSaleDTO);
-                //update inventory
-                //update accounting system
-                sale.printReceipt(receiptPrinter, paymentAmount, change, finalSaleDTO);
-            } else {
-                System.out.printf("payment have to be positive %d kr is invalid", paymentAmount);
-            }
+        double change = 0;
+        if (paymentAmount < 0) {
+            System.out.printf("Payment has to be positive. %f kr is invalid.", paymentAmount);
+            return -1;
+        } else if (paymentAmount < finalSaleDTO.getRunningTotal()) {
+            System.out.printf("Payment has to be over cost. %f kr is insufficent.", paymentAmount);
+            return -2;
+        }
+        change = cashRegister.calculateChange(paymentAmount, finalSaleDTO);
+        inventorySystem.updateInventorySystem(finalSaleDTO);
+        accountingSystem.updateAccountingSystem(finalSaleDTO);
+        sale.printReceipt(receiptPrinter, paymentAmount, change, finalSaleDTO);
 
         return change;
-        
     }
-
 }
