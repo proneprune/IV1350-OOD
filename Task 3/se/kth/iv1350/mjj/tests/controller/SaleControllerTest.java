@@ -5,6 +5,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
+
 import se.kth.iv1350.mjj.controller.SaleController;
 import se.kth.iv1350.mjj.integration.Display;
 import se.kth.iv1350.mjj.integration.ExternalAccountingSystem;
