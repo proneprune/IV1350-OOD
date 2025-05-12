@@ -58,7 +58,7 @@ public class SaleController {
      * @param productID the ID of the product that is scanned
      * @param quantity the amount of the product that is scanned
      */
-    public void scanProduct(int productID, int quantity) {
+    public void scanProduct(int productID, int quantity){
         ProductDTO product = getProduct(productID);
         if(product != null) {
             sale.addProduct(product, quantity);
