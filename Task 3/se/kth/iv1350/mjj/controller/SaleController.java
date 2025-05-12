@@ -63,9 +63,7 @@ public class SaleController {
         if(product != null) {
             sale.addProduct(product, quantity);
             display.updateDisplay(product, quantity, sale.getCost());
-        } else {
-            System.out.printf("Product with id: %d does not exist in inventorysystem", productID);
-        }
+        } 
     }
 
     private ProductDTO getProduct(int productID){
@@ -111,10 +109,8 @@ public class SaleController {
     public double enterAmount(double paymentAmount){
         double change = 0;
         if (paymentAmount < 0) {
-            System.out.printf("Payment has to be positive. %f kr is invalid.", paymentAmount);
             return -1;
         } else if (paymentAmount < finalSaleDTO.getRunningTotal()) {
-            System.out.printf("Payment has to be over cost. %f kr is insufficent.", paymentAmount);
             return -2;
         }
         change = cashRegister.calculateChange(paymentAmount, finalSaleDTO);

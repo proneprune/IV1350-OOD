@@ -3,9 +3,9 @@ import java.util.ArrayList;
 import java.util.Map.Entry;
 
 public class SaleDTO {
-    private double runningTotal;
-    private double totalTax;
-    private ArrayList<Entry<ProductDTO, Integer>> productsInSale;
+    private final double runningTotal;
+    private final double totalTax;
+    private final ArrayList<Entry<ProductDTO, Integer>> productsInSale;
 
     /**
      * Creates a SaleDTO from the supplied running total, total tax, and list of products

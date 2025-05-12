@@ -3,10 +3,10 @@ package se.kth.iv1350.mjj.model.DTO;
 import se.kth.iv1350.mjj.util.Price;
 
 public class ProductDTO {
-    private int productID;
-    private String productName;
-    private String productDesc;
-    private Price price;
+    private final int productID;
+    private final String productName;
+    private final String productDesc;
+    private final Price price;
 
 
     /**
