@@ -8,6 +8,7 @@ import se.kth.iv1350.mjj.model.CashRegister;
 import se.kth.iv1350.mjj.model.Sale;
 import se.kth.iv1350.mjj.model.DTO.ProductDTO;
 import se.kth.iv1350.mjj.model.DTO.SaleDTO;
+import se.kth.iv1350.mjj.util.ItemNotFoundException;
 
 
 public class SaleController {
@@ -58,17 +59,24 @@ public class SaleController {
      * @param productID the ID of the product that is scanned
      * @param quantity the amount of the product that is scanned
      */
-    public void scanProduct(int productID, int quantity){
-        ProductDTO product = getProduct(productID);
-        if(product != null) {
-            sale.addProduct(product, quantity);
-            display.updateDisplay(product, quantity, sale.getCost());
-        } 
+    public void scanProduct(int productID, int quantity) {
+        try {
+            ProductDTO product = getProduct(productID);
+            if(product != null) {
+                sale.addProduct(product, quantity);
+                display.updateDisplay(product, quantity, sale.getCost());
+            }
+        } catch (ItemNotFoundException e) {
+            display.showError("Sorry that item is not in the system");
+        }
     }
 
-    private ProductDTO getProduct(int productID){
-        
-        return inventorySystem.getProductInfo(productID);
+    private ProductDTO getProduct(int productID) throws ItemNotFoundException{
+        try {
+            return inventorySystem.getProductInfo(productID);
+        } catch (ItemNotFoundException e) {
+            throw e;
+        }
     }
 
     /**

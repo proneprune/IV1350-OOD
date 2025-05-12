@@ -2,6 +2,7 @@ package se.kth.iv1350.mjj.integration;
 
 import se.kth.iv1350.mjj.model.DTO.ProductDTO;
 import se.kth.iv1350.mjj.model.DTO.SaleDTO;
+import se.kth.iv1350.mjj.util.ItemNotFoundException;
 
 public class ExternalInventorySystem {
 
@@ -21,7 +22,7 @@ public class ExternalInventorySystem {
      * @param id The product ID of the wanted product.
      * @return A ProductDTO of the wanted product.
      */
-    public ProductDTO getProductInfo(int id) {
+    public ProductDTO getProductInfo(int id) throws ItemNotFoundException {
         switch (id) {
             case 1:
                 return item1;
@@ -32,7 +33,7 @@ public class ExternalInventorySystem {
             case 4:
                 return item4;
             default:
-                return null;
+                throw new ItemNotFoundException("Item with ID " + id + " not found in InventorySystem.");
         }
     }
 

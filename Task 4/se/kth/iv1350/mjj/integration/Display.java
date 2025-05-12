@@ -34,6 +34,10 @@ public class Display {
         System.out.printf("Total VAT: %.2f%n%n", cost.getTotalTaxCost());
     }
 
+    public void showError(String error) {
+        System.out.printf("%s%n", error);
+    }
+
 
     
 }
