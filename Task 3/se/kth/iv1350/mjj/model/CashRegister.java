@@ -1,6 +1,7 @@
 package se.kth.iv1350.mjj.model;
 import se.kth.iv1350.mjj.model.DTO.SaleDTO;
 
+
 public class CashRegister {
     
     private double cashInRegister;

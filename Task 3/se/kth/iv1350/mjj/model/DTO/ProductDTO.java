@@ -3,6 +3,7 @@ package se.kth.iv1350.mjj.model.DTO;
 import se.kth.iv1350.mjj.util.Price;
 
 public class ProductDTO {
+
     private final int productID;
     private final String productName;
     private final String productDesc;
@@ -71,3 +72,4 @@ public class ProductDTO {
         return price.getTaxRate();
     }
 }
+

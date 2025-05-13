@@ -48,4 +48,5 @@ public class ReceiptPrinter {
         System.out.println("------------------ End receipt ---------------------");
     }
 
+
 }
