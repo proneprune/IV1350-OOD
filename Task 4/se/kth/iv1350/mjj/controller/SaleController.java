@@ -8,7 +8,7 @@ import se.kth.iv1350.mjj.model.CashRegister;
 import se.kth.iv1350.mjj.model.Sale;
 import se.kth.iv1350.mjj.model.DTO.ProductDTO;
 import se.kth.iv1350.mjj.model.DTO.SaleDTO;
-import se.kth.iv1350.mjj.util.DisplayInput;
+import se.kth.iv1350.mjj.util.ItemNotFoundException;
 
 
 public class SaleController {
@@ -17,6 +17,7 @@ public class SaleController {
     private ExternalAccountingSystem accountingSystem;
     //discount db
     private ReceiptPrinter receiptPrinter;
+    private Display display;
     private CashRegister cashRegister;
     private SaleDTO finalSaleDTO;
 
@@ -26,14 +27,15 @@ public class SaleController {
      * @param accountingSystem The external accounting system to be used.
      * @param inventorySystem The external inventory system to be used.
      * @param receiptPrinter The receipt printer connected to this sale
+     * @param display   The display connected to this sale
      * @param cashRegister The cash register connected to this sale
      */
     public SaleController(ExternalAccountingSystem accountingSystem, ExternalInventorySystem inventorySystem, 
-                                    ReceiptPrinter receiptPrinter) {
+                                    ReceiptPrinter receiptPrinter, Display display) {
         this.accountingSystem = accountingSystem;
         this.inventorySystem = inventorySystem;
         this.receiptPrinter = receiptPrinter;
-        //this.display = display;
+        this.display = display;
         this.cashRegister = new CashRegister();
     }
     
@@ -57,20 +59,24 @@ public class SaleController {
      * @param productID the ID of the product that is scanned
      * @param quantity the amount of the product that is scanned
      */
-    public DisplayInput scanProduct(int productID, int quantity) {
-        ProductDTO product = getProduct(productID);
-        DisplayInput displayInput = new DisplayInput(product, quantity, sale.getCost());
-        if(product != null) {
-            sale.addProduct(product, quantity);
-            //display.updateDisplay(product, quantity, sale.getCost());
-            return displayInput;
-        } 
-        return null;
+    public void scanProduct(int productID, int quantity) {
+        try {
+            ProductDTO product = getProduct(productID);
+            if(product != null) {
+                sale.addProduct(product, quantity);
+                display.updateDisplay(product, quantity, sale.getCost());
+            }
+        } catch (ItemNotFoundException e) {
+            display.showError("Sorry that item is not in the system");
+        }
     }
 
-    private ProductDTO getProduct(int productID){
-        
-        return inventorySystem.getProductInfo(productID);
+    private ProductDTO getProduct(int productID) throws ItemNotFoundException{
+        try {
+            return inventorySystem.getProductInfo(productID);
+        } catch (ItemNotFoundException e) {
+            throw e;
+        }
     }
 
     /**
