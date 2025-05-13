@@ -1,6 +1,7 @@
 package se.kth.iv1350.mjj.integration;
 
 import se.kth.iv1350.mjj.model.Receipt;
+<<<<<<< HEAD
 import se.kth.iv1350.mjj.model.DTO.ProductDTO;
 import se.kth.iv1350.mjj.model.DTO.SaleDTO;
 
@@ -48,4 +49,14 @@ public class ReceiptPrinter {
         System.out.println("------------------ End receipt ---------------------");
     }
 
+=======
+
+public class ReceiptPrinter {
+    ReceiptPrinter() {
+    }
+
+    printReceipt(Receipt receipt) {
+        
+    }
+>>>>>>> main
 }
