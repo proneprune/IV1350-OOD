@@ -32,6 +32,8 @@ public class View {
         saleController.scanProduct(2, 1); // Product ID 2, quantity 1
         saleController.scanProduct(3, 1); // Product ID 2, quantity 1
         saleController.scanProduct(4, 1); // Product ID 2, quantity 1
+        saleController.scanProduct(5, 1); // Product ID 2, quantity 1
+
 
         double amountToPay = saleController.endSale();
         double change = saleController.enterAmount(amountToPay + 100);
