@@ -33,7 +33,7 @@ public class ExternalInventorySystem {
             case 4:
                 return item4;
             default:
-                throw new ItemNotFoundException("Item with ID " + id + " not found in InventorySystem.");
+                throw new ItemNotFoundException(id);
         }
     }
 
