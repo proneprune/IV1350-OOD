@@ -1,9 +1,12 @@
 package se.kth.iv1350.mjj.view;
 
 import se.kth.iv1350.mjj.controller.SaleController;
+import se.kth.iv1350.mjj.integration.Display;
+import se.kth.iv1350.mjj.util.DisplayInput;
 
 public class View {
     private SaleController saleController;
+    private Display display;
 
     /**
      * Creates a new instance of View.
@@ -11,8 +14,9 @@ public class View {
      * @param saleController The controller that handles the sale process.
      */
 
-    public View(SaleController saleController) {
+    public View(SaleController saleController, Display display) {
         this.saleController = saleController;
+        this.display = display;
     }
 
     // TESTING
@@ -22,13 +26,14 @@ public class View {
      */
     public void start() {
         System.out.println("Welcome to the store!");
+        DisplayInput displayInput;
         
 
         saleController.startSale();
         System.out.println("Starting a new sale...");
 
         // Simulate adding products to the sale
-        saleController.scanProduct(1, 1); // Product ID 1, quantity 2
+        displayInput = saleController.scanProduct(1, 1); // Product ID 1, quantity 2
         saleController.scanProduct(2, 1); // Product ID 2, quantity 1
         saleController.scanProduct(3, 1); // Product ID 2, quantity 1
         saleController.scanProduct(4, 1); // Product ID 2, quantity 1
