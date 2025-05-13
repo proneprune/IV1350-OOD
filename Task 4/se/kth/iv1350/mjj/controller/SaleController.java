@@ -72,7 +72,7 @@ public class SaleController {
         } catch (ItemNotFoundException e) {
             display.showError("Sorry that item is not in the system");
         } catch (DatabaseUnreachableException e) {
-            
+            display.showError("Database not reachable.");
         }
     }
     
@@ -80,6 +80,8 @@ public class SaleController {
         try {
             return inventorySystem.getProductInfo(productID);
         } catch (ItemNotFoundException e) {
+            throw e;
+        } catch (DatabaseUnreachableException e) {
             throw e;
         }
     }
