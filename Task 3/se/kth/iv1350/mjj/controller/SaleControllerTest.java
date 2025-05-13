@@ -21,7 +21,7 @@ public class SaleControllerTest {
     @BeforeEach
     public void setUp() {
         externalInventorySystem = new ExternalInventorySystem();
-        saleController = new SaleController(new ExternalAccountingSystem(), externalInventorySystem, new ReceiptPrinter(), new Display());
+        saleController = new SaleController(new ExternalAccountingSystem(), externalInventorySystem, new ReceiptPrinter());
         saleController.startSale();
     }
 
