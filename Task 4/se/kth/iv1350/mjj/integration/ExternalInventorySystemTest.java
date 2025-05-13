@@ -12,6 +12,7 @@ import se.kth.iv1350.mjj.integration.ExternalInventorySystem;
 import se.kth.iv1350.mjj.integration.ReceiptPrinter;
 import se.kth.iv1350.mjj.model.DTO.ProductDTO;
 import se.kth.iv1350.mjj.util.ItemNotFoundException;
+import se.kth.iv1350.mjj.util.DatabaseUnreachableException;
 
 public class ExternalInventorySystemTest {
 
@@ -28,7 +29,7 @@ public class ExternalInventorySystemTest {
     }
 
     @Test
-    public void testGetProductInfoValidID() throws ItemNotFoundException {
+    public void testGetProductInfoValidID() throws ItemNotFoundException, DatabaseUnreachableException {
         ProductDTO expected = new ProductDTO(2, "Mjölk 1L", "Arla mellan mjölk 1L, 1.5% fett", 14.95, 0.12);
         ProductDTO tested = externalInventorySystem.getProductInfo(2);
         assertEquals(expected.getProductID(), tested.getProductID());
@@ -39,7 +40,7 @@ public class ExternalInventorySystemTest {
     }
 
     @Test
-    public void testGetProductInfoInvalidID() throws ItemNotFoundException {
+    public void testGetProductInfoInvalidID() throws ItemNotFoundException, DatabaseUnreachableException {
         ProductDTO tested = externalInventorySystem.getProductInfo(5);
         assertNull(tested, "ProductDTO with invalid ID is not null.");
     }

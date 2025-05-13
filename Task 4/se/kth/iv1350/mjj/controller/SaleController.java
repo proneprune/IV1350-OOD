@@ -1,5 +1,7 @@
 package se.kth.iv1350.mjj.controller;
 
+import org.junit.platform.reporting.shadow.org.opentest4j.reporting.events.core.Data;
+
 import se.kth.iv1350.mjj.integration.Display;
 import se.kth.iv1350.mjj.integration.ExternalAccountingSystem;
 import se.kth.iv1350.mjj.integration.ExternalInventorySystem;
@@ -9,6 +11,7 @@ import se.kth.iv1350.mjj.model.Sale;
 import se.kth.iv1350.mjj.model.DTO.ProductDTO;
 import se.kth.iv1350.mjj.model.DTO.SaleDTO;
 import se.kth.iv1350.mjj.util.ItemNotFoundException;
+import se.kth.iv1350.mjj.util.DatabaseUnreachableException;
 
 
 public class SaleController {
@@ -68,10 +71,12 @@ public class SaleController {
             }
         } catch (ItemNotFoundException e) {
             display.showError("Sorry that item is not in the system");
+        } catch (DatabaseUnreachableException e) {
+            
         }
     }
-
-    private ProductDTO getProduct(int productID) throws ItemNotFoundException{
+    
+    private ProductDTO getProduct(int productID) throws ItemNotFoundException, DatabaseUnreachableException {
         try {
             return inventorySystem.getProductInfo(productID);
         } catch (ItemNotFoundException e) {
