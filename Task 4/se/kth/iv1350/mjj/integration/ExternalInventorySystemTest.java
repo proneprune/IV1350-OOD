@@ -38,10 +38,11 @@ public class ExternalInventorySystemTest {
         assertEquals(expected.getPrice(), tested.getPrice());
         assertEquals(expected.getTaxRate(), tested.getTaxRate());
     }
-
+    
     @Test
     public void testGetProductInfoInvalidID() throws ItemNotFoundException, DatabaseUnreachableException {
-        ProductDTO tested = externalInventorySystem.getProductInfo(5);
-        assertNull(tested, "ProductDTO with invalid ID is not null.");
+        assertThrows(ItemNotFoundException.class, ()->{
+            ProductDTO tested = externalInventorySystem.getProductInfo(5);
+        });
     }
 }

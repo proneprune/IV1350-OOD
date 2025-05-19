@@ -68,5 +68,4 @@ public class SaleTest {
         assertEquals(2, saleDTO.getProductsInSale().get(0).getValue(), "Product quantity is not correct");
     }
 
-
 }
