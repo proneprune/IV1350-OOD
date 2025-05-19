@@ -2,26 +2,33 @@ package se.kth.iv1350.mjj.model;
 
 import java.util.AbstractMap.SimpleEntry;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map.Entry;
 
 import se.kth.iv1350.mjj.integration.ReceiptPrinter;
 import se.kth.iv1350.mjj.model.DTO.ProductDTO;
 import se.kth.iv1350.mjj.model.DTO.SaleDTO;
 import se.kth.iv1350.mjj.util.Cost;
+import se.kth.iv1350.mjj.util.TotalRevenueFileOutput;
+import se.kth.iv1350.mjj.view.TotalRevenueView;
 
 
 public class Sale {
 
     private Cost cost;
     private ArrayList<Entry<ProductDTO, Integer>> productList;
+    private List<RevenueObserver> revenueObservers = new ArrayList<>();
 
 
     /**
-     *  Creates a Sale object with an empty list of products and a price object.
+     * Creates a Sale object with an empty list of products and a price object.
+     * Adds new Observers to the list of RevenueObserver objects.
      */ 
     public Sale() {
         this.cost = new Cost();
         this.productList = new ArrayList<Entry<ProductDTO, Integer>>();
+        revenueObservers.add(new TotalRevenueView());
+        revenueObservers.add(new TotalRevenueFileOutput());
     }
 
     /**
@@ -59,7 +66,13 @@ public class Sale {
      * @return The total cost of the sale including VAT.
      */
     public double getRunningTotalPlusVat() {
+        notifyObservers();
         return cost.getTotalCost();
+    }
+    private void notifyObservers() {
+        for (RevenueObserver observer : revenueObservers) {
+            observer.updateRevenue(cost.getTotalCost());
+        }
     }
 
     /**

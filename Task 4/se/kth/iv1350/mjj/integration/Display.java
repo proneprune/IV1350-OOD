@@ -2,6 +2,7 @@ package se.kth.iv1350.mjj.integration;
 
 import se.kth.iv1350.mjj.model.DTO.ProductDTO;
 import se.kth.iv1350.mjj.util.Cost;
+import se.kth.iv1350.mjj.util.DisplayInput;
 
 public class Display {
 
@@ -17,11 +18,12 @@ public class Display {
      * 
      * it also calculates running total and total tax for this instance of the sale.
      * 
-     * @param currentProduct The current product to be displayed.
-     * @param quantity       The quantity of the current product.
-     * @param cost           The object that contains total cost and total tax so far
+     * @param displayInput The DisplayInput object used to retrieve display information.
      */
-    public void updateDisplay(ProductDTO currentProduct, int quantity, Cost cost) {
+    public void updateDisplay(DisplayInput displayInput) {
+        ProductDTO currentProduct = displayInput.getCurrentProductDTO();
+        int quantity = displayInput.getQuantity();
+        Cost cost = displayInput.getCost();
 
         System.out.printf("Added %d item%s with ID: %d%n", quantity, ((quantity > 1) ? "s" : ""), currentProduct.getProductID());
         System.out.printf("Item ID: %d%n", currentProduct.getProductID());
@@ -33,11 +35,5 @@ public class Display {
         System.out.printf("Total cost (incl VAT): %.2f kr%n", cost.getTotalCost());
         System.out.printf("Total VAT: %.2f%n%n", cost.getTotalTaxCost());
     }
-
-    public void showError(String error) {
-        System.out.printf("%s%n", error);
-    }
-
-
     
 }

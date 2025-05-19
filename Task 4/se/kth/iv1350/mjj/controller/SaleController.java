@@ -1,7 +1,5 @@
 package se.kth.iv1350.mjj.controller;
 
-import org.junit.platform.reporting.shadow.org.opentest4j.reporting.events.core.Data;
-
 import se.kth.iv1350.mjj.integration.Display;
 import se.kth.iv1350.mjj.integration.ExternalAccountingSystem;
 import se.kth.iv1350.mjj.integration.ExternalInventorySystem;
@@ -12,6 +10,7 @@ import se.kth.iv1350.mjj.model.DTO.ProductDTO;
 import se.kth.iv1350.mjj.model.DTO.SaleDTO;
 import se.kth.iv1350.mjj.util.ItemNotFoundException;
 import se.kth.iv1350.mjj.util.DatabaseUnreachableException;
+import se.kth.iv1350.mjj.util.DisplayInput;
 
 
 public class SaleController {
@@ -30,15 +29,13 @@ public class SaleController {
      * @param accountingSystem The external accounting system to be used.
      * @param inventorySystem The external inventory system to be used.
      * @param receiptPrinter The receipt printer connected to this sale
-     * @param display   The display connected to this sale
      * @param cashRegister The cash register connected to this sale
      */
     public SaleController(ExternalAccountingSystem accountingSystem, ExternalInventorySystem inventorySystem, 
-                                    ReceiptPrinter receiptPrinter, Display display) {
+                                    ReceiptPrinter receiptPrinter) {
         this.accountingSystem = accountingSystem;
         this.inventorySystem = inventorySystem;
         this.receiptPrinter = receiptPrinter;
-        this.display = display;
         this.cashRegister = new CashRegister();
     }
     
@@ -62,29 +59,22 @@ public class SaleController {
      * @param productID the ID of the product that is scanned
      * @param quantity the amount of the product that is scanned
      */
-    public void scanProduct(int productID, int quantity) {
+    public DisplayInput scanProduct(int productID, int quantity) throws ItemNotFoundException, DatabaseUnreachableException{
         try {
-            ProductDTO product = getProduct(productID);
+            ProductDTO product = inventorySystem.getProductInfo(productID);
+            DisplayInput displayInput = new DisplayInput(product, quantity, sale.getCost());
             if(product != null) {
                 sale.addProduct(product, quantity);
-                display.updateDisplay(product, quantity, sale.getCost());
+                return displayInput;
             }
         } catch (ItemNotFoundException e) {
-            display.showError("Sorry that item is not in the system");
+            throw e;
         } catch (DatabaseUnreachableException e) {
-            display.showError("Database not reachable.");
+            throw e;
         }
+        return null;
     }
     
-    private ProductDTO getProduct(int productID) throws ItemNotFoundException, DatabaseUnreachableException {
-        try {
-            return inventorySystem.getProductInfo(productID);
-        } catch (ItemNotFoundException e) {
-            throw e;
-        } catch (DatabaseUnreachableException e) {
-            throw e;
-        }
-    }
 
     /**
      * Ends the sale and returns the total amount to be paid.

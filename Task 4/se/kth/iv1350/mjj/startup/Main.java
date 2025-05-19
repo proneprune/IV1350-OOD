@@ -20,8 +20,8 @@ public class Main {
         Display display = new Display();
         ExternalAccountingSystem externalAccountingSystem = new ExternalAccountingSystem();
         ExternalInventorySystem externalInventorySystem = new ExternalInventorySystem();
-        SaleController saleController = new SaleController(externalAccountingSystem, externalInventorySystem, receiptPrinter, display);
-        View view = new View(saleController);
+        SaleController saleController = new SaleController(externalAccountingSystem, externalInventorySystem, receiptPrinter);
+        View view = new View(saleController, display);
         view.start();
     }
 }

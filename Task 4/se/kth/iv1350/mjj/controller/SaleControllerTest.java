@@ -23,7 +23,7 @@ public class SaleControllerTest {
     @BeforeEach
     public void setUp() {
         externalInventorySystem = new ExternalInventorySystem();
-        saleController = new SaleController(new ExternalAccountingSystem(), externalInventorySystem, new ReceiptPrinter(), new Display());
+        saleController = new SaleController(new ExternalAccountingSystem(), externalInventorySystem, new ReceiptPrinter());
         saleController.startSale();
     }
 
@@ -44,14 +44,16 @@ public class SaleControllerTest {
     }
 
     @Test
-    public void testDoAPurchase() {
+    public void testDoAPurchase() throws ItemNotFoundException, DatabaseUnreachableException {
         saleController.scanProduct(1, 1);
         double amountToPay = saleController.endSale();
         double change = saleController.enterAmount(amountToPay);
+        assertNotEquals(change, -1, "Change is -1 (error).");
+        assertNotEquals(change, -2, "Change is -2 (error).");
     }
 
     @Test
-    public void testPayingWithNegativeMoney() {
+    public void testPayingWithNegativeMoney() throws ItemNotFoundException, DatabaseUnreachableException {
         saleController.scanProduct(1, 1);
         double amountToPay = saleController.endSale();
         amountToPay *= -1;
@@ -60,11 +62,25 @@ public class SaleControllerTest {
     }
 
     @Test
-    public void testPayingInsufficentFunds() {
+    public void testPayingInsufficentFunds() throws ItemNotFoundException, DatabaseUnreachableException {
         saleController.scanProduct(1, 1);
         double amountToPay = saleController.endSale();
         amountToPay--;
         double change = saleController.enterAmount(amountToPay);
         assertEquals(change, -2, "Change is not -2 (error).");
+    }
+
+    @Test
+    public void testScanProductInvalidID() throws ItemNotFoundException, DatabaseUnreachableException {
+        assertThrows(ItemNotFoundException.class, ()->{
+            saleController.scanProduct(5, 1);
+        });
+    }
+
+    @Test
+    public void testScanProductDatabaseUnreachable() throws ItemNotFoundException, DatabaseUnreachableException {
+        assertThrows(DatabaseUnreachableException.class, ()->{
+            saleController.scanProduct(100, 1);
+        });
     }
 }

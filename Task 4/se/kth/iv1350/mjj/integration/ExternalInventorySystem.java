@@ -19,6 +19,7 @@ public class ExternalInventorySystem {
 
     /**
      * A method for returning a product based on its ID.
+     * ID 100 simulates a database unreachable exception.
      * 
      * @param id The product ID of the wanted product.
      * @return A ProductDTO of the wanted product.
