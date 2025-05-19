@@ -21,7 +21,8 @@ public class Sale {
 
 
     /**
-     *  Creates a Sale object with an empty list of products and a price object.
+     * Creates a Sale object with an empty list of products and a price object.
+     * Adds new Observers to the list of RevenueObserver objects.
      */ 
     public Sale() {
         this.cost = new Cost();
