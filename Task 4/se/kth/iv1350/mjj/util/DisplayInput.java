@@ -23,21 +23,21 @@ public class DisplayInput{
     }
     /**
      * Returns the currentProduct DTO.
-     * @return currentProduct The current productDTO.
+     * @return The current productDTO.
      */
     public ProductDTO getCurrentProductDTO(){
         return currentProduct;
     }
     /**
      * Returns the currentProduct quantity.
-     * @return quantity The quantity of the product added.
+     * @return The quantity of the product added.
      */
     public int getQuantity(){
         return quantity;
     }
     /**
      * Returns the costObject of the currentProduct.
-     * @return cost The cost object of the currentProduct.
+     * @return The cost object of the currentProduct.
      */
     public Cost getCost(){
         return cost;
