@@ -58,6 +58,8 @@ public class SaleController {
      *  
      * @param productID the ID of the product that is scanned
      * @param quantity the amount of the product that is scanned
+     * @throws ItemNotFoundException exception indecating that a item id is not int the inventory re thrown fron inventory
+     * @throws DatabaseUnreachableException exception indecating that the data base was unreachable re thrown fron inventory
      */
     public DisplayInput scanProduct(int productID, int quantity) throws ItemNotFoundException, DatabaseUnreachableException{
         try {
