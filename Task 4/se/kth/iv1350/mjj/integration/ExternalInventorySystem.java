@@ -23,7 +23,8 @@ public class ExternalInventorySystem {
      * 
      * @param id The product ID of the wanted product.
      * @return A ProductDTO of the wanted product.
-     *      * @throws ItemNotFoundException exception indecating that a item id is not int the inventory
+     * @throws ItemNotFoundException exception indecating that a item id is not int the inventory
+     * @throws ItemNotFoundException exception indecating that a item id is not int the inventory
      * @throws DatabaseUnreachableException exception indecating that the data base was unreachable
      */
     public ProductDTO getProductInfo(int id) throws ItemNotFoundException, DatabaseUnreachableException {
