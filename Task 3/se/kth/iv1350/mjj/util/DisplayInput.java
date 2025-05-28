@@ -4,9 +4,9 @@ import se.kth.iv1350.mjj.model.DTO.ProductDTO;
 import se.kth.iv1350.mjj.util.Cost;
 
 public class DisplayInput{
-    private ProductDTO currentProduct;
-    private int quantity;
-    private Cost cost;
+    private final ProductDTO currentProduct;
+    private final int quantity;
+    private final Cost cost;
 
      /**
      * Create displayInput object with current product, quantity and cost
